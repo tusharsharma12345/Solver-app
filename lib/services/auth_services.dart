@@ -100,6 +100,7 @@ class AuthService {
               context,
               'Account created!Login with the same credentials!',
             );
+            
           });
     } catch (e) {
       showSnackBar(context, e.toString());

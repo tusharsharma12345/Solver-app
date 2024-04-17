@@ -19,9 +19,9 @@ authRouter.post("/api/get_question_answer", async (req,res)=>{
            "AWS", "backend", "big data", "blockchain", "bug", "byte", "C#", "C++", "cloud", "code",
            "compiler", "computing", "CSS", "database", "debugging", "deep learning", "DevOps", "Docker", "encryption", "frontend",
            "framework", "function", "GitHub", "HTML", "HTTP", "JavaScript", "JSON", "Java", "Linux", "machine learning",
-           "Microsoft", "mobile", "MySQL", "network", "node.js", "object-oriented", "open source", "operating system", "PHP",
+           "Microsoft", "mobile", "MySQL", "network", "nodejs", "object-oriented", "open source", "operating system", "PHP",
            "Python", "programming", "React", "REST", "Ruby", "server", "software", "SQL", "stack", "Swift",
-           "testing", "UI", "UX", "version control", "virtual machine", "web", "XML",
+           "testing", "UI", "UX", "version control", "virtual machine", "web", "XML","flutter"
            // Add more words as needed...
          ];
          let lowerCaseArrayofstoredwords = itDevelopmentWords.map(str => str.toLowerCase());
@@ -34,7 +34,7 @@ authRouter.post("/api/get_question_answer", async (req,res)=>{
              }
 );
 if(matchingWords.length===0){
-   res.status(201).json({ message: "Cannot find your questions." });
+   res.status(400).json({ msg: "Cannot find your questions." });
  }
  else{
     let result_question = await question_answer.find({identity_key: matchingWords[0]});
@@ -42,7 +42,7 @@ if(matchingWords.length===0){
         res.json(result_question);
     }
     else{
-        res.json({msg:"No data found"});
+        res.status(400).json({msg:"No data found"});
     }
     
  }
@@ -67,7 +67,7 @@ authRouter.post("/api/upload_question_answer", async (req,res)=>{
             "framework", "function", "GitHub", "HTML", "HTTP", "JavaScript", "JSON", "Java", "Linux", "machine learning",
             "Microsoft", "mobile", "MySQL", "network", "node.js", "object-oriented", "open source", "operating system", "PHP",
             "Python", "programming", "React", "REST", "Ruby", "server", "software", "SQL", "stack", "Swift",
-            "testing", "UI", "UX", "version control", "virtual machine", "web", "XML",
+            "testing", "UI", "UX", "version control", "virtual machine", "web", "XML","flutter"
             // Add more words as needed...
           ];
           let lowerCaseArrayofstoredwords = itDevelopmentWords.map(str => str.toLowerCase());
@@ -80,7 +80,7 @@ authRouter.post("/api/upload_question_answer", async (req,res)=>{
               }
 );
 if(matchingWords.length===0){
-    res.status(201).json({ message: "Cannot upload your question" });
+    res.status(400).json({ msg: "Cannot upload your question" });
   }
   else{
     let qa = new question_answer({
